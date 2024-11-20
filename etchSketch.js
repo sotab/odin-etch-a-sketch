@@ -1,9 +1,21 @@
-const container = document.querySelector('#container')
+// UI elements
 const body = document.querySelector('body')
+const gridContainer = document.createElement('div')
+const mainContainer = document.createElement('div')
 const genGridBtn = document.createElement('button')
-genGridBtn.textContent = 'Generate'
-body.appendChild(genGridBtn)
+const header = document.createElement('h1')
 
+genGridBtn.textContent = 'Generate'
+header.textContent = 'Etch-a-sketch!'
+gridContainer.id = 'grid-container'
+mainContainer.id = 'main-container'
+
+body.appendChild(header)
+mainContainer.appendChild(genGridBtn)
+mainContainer.appendChild(gridContainer)
+body.appendChild(mainContainer)
+
+// Logic
 const getRandomColor = () => {
     const colors = ['blue', 'pink', 'purple', 'yellow', 'blue', 'green', 'brown', 'red']
     const random = Math.floor(Math.random() * 8)
@@ -16,9 +28,9 @@ const getGridSize = () => {
 }
 
 const clearGridContainer = () => {
-    const container = document.getElementById('container')
-    while (container.firstChild) {
-        container.removeChild(container.firstChild)
+    const gridContainer = document.getElementById('grid-container')
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild)
     }
 }
 
@@ -37,7 +49,7 @@ function generateSketchBox(nr = 16) {
                 box.style.backgroundColor = getRandomColor()
             })
         }
-        container.appendChild(gridColumn)
+        gridContainer.appendChild(gridColumn)
     }
 }
 
@@ -46,7 +58,10 @@ genGridBtn.addEventListener('click', () => {
     if (gridSize > 0 && gridSize < 101 ) {
         clearGridContainer()
         generateSketchBox(gridSize)
-    } else {
+    } else if (gridSize == 'Cancel') {
+
+    }
+    else {
         window.alert('Cannot generate grid! Please click generate again and enter a number in the range of 1 - 100')
     }
 
