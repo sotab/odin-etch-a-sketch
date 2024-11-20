@@ -8,7 +8,15 @@ body {
   /* flex-wrap: wrap; */
 }
 
-.container{
+button {
+    background-color: blue;
+    height: 50px;
+    width: 100px;
+    justify-self: center;
+    align-self: start;
+}
+
+#container{
     display: flex;
     align-items: center;
     justify-content: center;
